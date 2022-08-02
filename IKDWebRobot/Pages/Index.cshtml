@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+*@
+<h1>Submit The Form For Request</h1>
+<form method="post">
+    <div>
+        <p>
+
+            <span>enter token please: </span>
+            <input width="00px" asp-for="@Model.Input.TokenValue" type="text" />
+        </p>
+        <p>
+            <span>enter seconds to request</span>
+            <input asp-for="@Model.Input.Seconds" type="number" />
+        </p>
+        <button type="submit"
+                class="btn btn-success">
+            Add
+        </button>
+    </div>
+</form>
+
+@if (@Model.ResponseContent != null)
+{
+    <h4>Response</h4>
+    @if (@Model.ResponseContent.rows?.Count > 0)
+    {
+
+        foreach (var item in @Model.ResponseContent.rows)
+        {
+            <h4>@item.Amount</h4>
+            <h4>@item.BenefitOk</h4>
+            <h4>@item.CalculateDate</h4>
+            <h4>@item.DocumentNo</h4>
+            <h4>@item.FlagTitle</h4>
+        }
+    }
+}
+<h4>@Model.ResponseContentAsString</h4>
